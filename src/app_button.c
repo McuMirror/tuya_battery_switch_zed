@@ -121,8 +121,8 @@ static void read_button_level(uint8_t i) {
             if (clock_time_exceed(button->hold_time, TIMEOUT_TICK_500MS)) {
                 if (button->hold == HOLD_NOT_PRESENT) {
                     button->hold = HOLD_PRESENT;
+                    APP_DEBUG(DEBUG_BUTTON_EN, "Level. Press and hold button: %d\r\n", i+1);
                     if (!factory_reset) {
-                        APP_DEBUG(DEBUG_BUTTON_EN, "Level. Press and hold button: %d\r\n", i+1);
                         if (device_settings.switchType[i] == ZCL_CUSTOM_SWITCH_TYPE_LEVEL_MOVE) {
                             if (!button->level_up) {
                                 up_down = LEVEL_MOVE_UP;

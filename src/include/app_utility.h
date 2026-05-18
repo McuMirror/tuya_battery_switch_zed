@@ -68,7 +68,7 @@ void start_message();
 int32_t delayedMcuResetCb(void *arg);
 int32_t delayedFactoryResetCb(void *arg);
 int32_t delayedFullResetCb(void *arg);
-void app_setPollRate(uint32_t sec, uint8_t poll_rate);
+void app_setPollRate(uint32_t ms, uint8_t poll_rate);
 void timerSetPollRate_stop();
 int32_t net_steer_start_offCb(void *args);
 uint8_t checksum(uint8_t *data, uint16_t length);

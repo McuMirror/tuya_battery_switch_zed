@@ -259,6 +259,7 @@ $(BIN_FILE): $(ELF_FILE)
 	@echo 'Create zigbee Tuya OTA file'
 	@python3 $(MAKE_OTA) -t $(PROJECT_FILE_NAME) -m $(MANUF_CODE) -i $(IMAGE_TYPE) -v0x1111114b -s "Slacky-DIY OTA" $(BIN_PATH)/$(PROJECT_FILE_NAME)_$(VERSION_RELEASE).$(VERSION_BUILD).bin
 	@echo ' '
+	-$(RM) $(BIN_PATH)/1141-d3a3-1111114b-tuya_battery_switch_zed_M004.zigbee   
 	@echo 'Finished building: $@'
 	@echo ' '
 

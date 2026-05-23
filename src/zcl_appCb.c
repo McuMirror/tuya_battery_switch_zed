@@ -208,20 +208,22 @@ static void app_zclWriteReqCmd(uint8_t endPoint, uint16_t clusterId, zclWriteCmd
         for (u8 i = 0; i < numAttr; i++) {
             if (attr[i].attrID == ZCL_ATTRID_LEVEL_DEFAULT_MOVE_RATE) {
                 uint8_t rate = attr[i].attrData[0];
+#if UART_PRINTF_MODE && DEBUG_ZCL_CB_EN
                 APP_DEBUG(DEBUG_ZCL_CB_EN, "Level rate: 0x%02x, ep: %d\r\n", rate, endPoint);
+#endif
                 device_settings.defaultMoveRate[idx] = rate;
                 save = true;
             } else if (attr[i].attrID == ZCL_ATTRID_LEVEL_MIN_LEVEL) {
                 uint8_t min = attr[i].attrData[0];
 #if UART_PRINTF_MODE && DEBUG_ZCL_CB_EN
-                APP_DEBUG(DEBUG_ZCL_CB_EN, "Level min: %d, ep: %d\r\n", min, epId);
+                APP_DEBUG(DEBUG_ZCL_CB_EN, "Level min: %d, ep: %d\r\n", min, endPoint);
 #endif
                 device_settings.levelMin[idx] = min;
                 save = true;
             } else if (attr[i].attrID == ZCL_ATTRID_LEVEL_MAX_LEVEL) {
                 uint8_t max = attr[i].attrData[0];
 #if UART_PRINTF_MODE && DEBUG_ZCL_CB_EN
-                APP_DEBUG(DEBUG_ZCL_CB_EN, "Level max: %d, ep: %d\r\n", max, epId);
+                APP_DEBUG(DEBUG_ZCL_CB_EN, "Level max: %d, ep: %d\r\n", max, endPoint);
 #endif
                 device_settings.levelMax[idx] = max;
                 save = true;
@@ -229,7 +231,7 @@ static void app_zclWriteReqCmd(uint8_t endPoint, uint16_t clusterId, zclWriteCmd
                 uint16_t time = attr[i].attrData[0] & 0xff;
                 time |= (attr[i].attrData[1] << 8) & 0xffff;
 #if UART_PRINTF_MODE && DEBUG_ZCL_CB_EN
-                APP_DEBUG(DEBUG_ZCL_CB_EN, "Level time: %d, ep: %d\r\n", time, epId);
+                APP_DEBUG(DEBUG_ZCL_CB_EN, "Level time: %d, ep: %d\r\n", time, endPoint);
 #endif
                 device_settings.transitionTime[idx] = time;
                 save = true;
@@ -318,11 +320,11 @@ static void app_zclCfgReportCmd(uint8_t endPoint, uint16_t clusterId, zclCfgRepo
                     TL_ZB_TIMER_CANCEL(&g_appCtx.timerBatteryEvt);
                 }
                 g_appCtx.timerBatteryEvt = TL_ZB_TIMER_SCHEDULE(batteryCb, NULL, pCfgReportCmd->attrList[i].maxReportInt * 1000);
+                app_setPollRate(TIMEOUT_1MIN, 1);
             }
         }
     }
 
-    app_setPollRate(TIMEOUT_30SEC);
 }
 
 /*********************************************************************
@@ -987,3 +989,10 @@ status_t app_levelCb(zclIncomingAddrInfo_t *pAddrInfo, u8 cmdId, void *cmdPayloa
     return ZCL_STA_SUCCESS;
 }
 
+status_t app_colorCtrlCb(zclIncomingAddrInfo_t *pAddrInfo, u8 cmdId, void *cmdPayload) {
+    APP_DEBUG(DEBUG_ZCL_CB_EN, "app_colorCtrlCb\r\n");
+    status_t status = ZCL_STA_SUCCESS;
+
+    return status;
+
+}

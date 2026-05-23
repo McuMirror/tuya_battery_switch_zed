@@ -1,5 +1,4 @@
 out/
 doc_local/
 build/
-bin/*.bin
-bin/*.zigbee
+tuya_battery_switch_zed_M???_V*.bin

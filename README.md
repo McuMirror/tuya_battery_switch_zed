@@ -24,6 +24,8 @@
 | TS0042-M003-SlD | TS0042 | [TS0042](https://www.zigbee2mqtt.io/devices/TS0042.html) | _TZ3000_h68nee3e | OTA file | [:bookmark_tabs:](doc/TS0042-M003.md) | 
 | TS0044-M004-SlD | TS0044 | [TS0044](https://www.zigbee2mqtt.io/devices/TS0044.html) | HOBEIAN | BIN file | [:bookmark_tabs:](doc/TS0044-M004.md) |
 | TS0041-M005-SlD | TS0041 | [TS0041](https://www.zigbee2mqtt.io/devices/TS0041.html) | _TZ3000_itb0omhv | OTA file | [:bookmark_tabs:](doc/TS0041-M005.md) |
+| TS0042-M006-SlD | TS0042 | [TS0042](https://www.zigbee2mqtt.io/devices/TS0042.html) | _TZ3000_tzvbimpq | OTA file | [:bookmark_tabs:](doc/TS0041-M005.md) |
+| TS0043-M007-SlD | TS0043 | [TS0043](https://www.zigbee2mqtt.io/devices/TS0043.html) | _TZ3000_sj7jbgks | OTA file | [:bookmark_tabs:](doc/TS0043-M007.md) |
 
 #### Проверялся только в zigbee2mqtt. Требует всестороннего тестирования.
 
